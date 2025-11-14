@@ -27,6 +27,14 @@ export interface SEOReport {
     pageQuality: SEOCheckResult[];
     advancedImages: SEOCheckResult[];
     multimedia: SEOCheckResult[];
+    coreWebVitals: SEOCheckResult[];
+    analytics: SEOCheckResult[];
+    mobileUX: SEOCheckResult[];
+    schemaValidation: SEOCheckResult[];
+    resourceOptimization: SEOCheckResult[];
+    legalCompliance: SEOCheckResult[];
+    ecommerce: SEOCheckResult[];
+    internationalization: SEOCheckResult[];
   };
   score: number;
   summary: {

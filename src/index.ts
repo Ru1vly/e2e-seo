@@ -19,6 +19,14 @@ import { SpamDetectionChecker } from './checkers/spamDetection';
 import { PageQualityChecker } from './checkers/pageQuality';
 import { AdvancedImagesChecker } from './checkers/advancedImages';
 import { MultimediaChecker } from './checkers/multimedia';
+import { CoreWebVitalsChecker } from './checkers/coreWebVitals';
+import { AnalyticsChecker } from './checkers/analytics';
+import { MobileUXChecker } from './checkers/mobileUX';
+import { SchemaValidationChecker } from './checkers/schemaValidation';
+import { ResourceOptimizationChecker } from './checkers/resourceOptimization';
+import { LegalComplianceChecker } from './checkers/legalCompliance';
+import { EcommerceChecker } from './checkers/ecommerce';
+import { InternationalizationChecker } from './checkers/internationalization';
 
 export class SEOChecker {
   private browser: Browser | null = null;
@@ -54,8 +62,16 @@ export class SEOChecker {
       const pageQualityChecker = new PageQualityChecker(this.page!);
       const advancedImagesChecker = new AdvancedImagesChecker(this.page!);
       const multimediaChecker = new MultimediaChecker(this.page!);
+      const coreWebVitalsChecker = new CoreWebVitalsChecker(this.page!);
+      const analyticsChecker = new AnalyticsChecker(this.page!);
+      const mobileUXChecker = new MobileUXChecker(this.page!);
+      const schemaValidationChecker = new SchemaValidationChecker(this.page!);
+      const resourceOptimizationChecker = new ResourceOptimizationChecker(this.page!);
+      const legalComplianceChecker = new LegalComplianceChecker(this.page!);
+      const ecommerceChecker = new EcommerceChecker(this.page!);
+      const internationalizationChecker = new InternationalizationChecker(this.page!);
 
-      const [metaTags, headings, images, performance, robotsTxt, sitemap, security, structuredData, socialMedia, content, links, uiElements, technical, accessibility, urlFactors, spamDetection, pageQuality, advancedImages, multimedia] = await Promise.all([
+      const [metaTags, headings, images, performance, robotsTxt, sitemap, security, structuredData, socialMedia, content, links, uiElements, technical, accessibility, urlFactors, spamDetection, pageQuality, advancedImages, multimedia, coreWebVitals, analytics, mobileUX, schemaValidation, resourceOptimization, legalCompliance, ecommerce, internationalization] = await Promise.all([
         metaTagsChecker.checkAll(),
         headingsChecker.checkAll(),
         imagesChecker.checkAll(),
@@ -75,9 +91,17 @@ export class SEOChecker {
         pageQualityChecker.checkAll(),
         advancedImagesChecker.checkAll(),
         multimediaChecker.checkAll(),
+        coreWebVitalsChecker.checkAll(),
+        analyticsChecker.checkAll(),
+        mobileUXChecker.checkAll(),
+        schemaValidationChecker.checkAll(),
+        resourceOptimizationChecker.checkAll(),
+        legalComplianceChecker.checkAll(),
+        ecommerceChecker.checkAll(),
+        internationalizationChecker.checkAll(),
       ]);
 
-      const allChecks = [...metaTags, ...headings, ...images, ...performance, ...robotsTxt, ...sitemap, ...security, ...structuredData, ...socialMedia, ...content, ...links, ...uiElements, ...technical, ...accessibility, ...urlFactors, ...spamDetection, ...pageQuality, ...advancedImages, ...multimedia];
+      const allChecks = [...metaTags, ...headings, ...images, ...performance, ...robotsTxt, ...sitemap, ...security, ...structuredData, ...socialMedia, ...content, ...links, ...uiElements, ...technical, ...accessibility, ...urlFactors, ...spamDetection, ...pageQuality, ...advancedImages, ...multimedia, ...coreWebVitals, ...analytics, ...mobileUX, ...schemaValidation, ...resourceOptimization, ...legalCompliance, ...ecommerce, ...internationalization];
       const passed = allChecks.filter((c) => c.passed).length;
       const failed = allChecks.filter((c) => !c.passed).length;
       const score = Math.round((passed / allChecks.length) * 100);
@@ -105,6 +129,14 @@ export class SEOChecker {
           pageQuality,
           advancedImages,
           multimedia,
+          coreWebVitals,
+          analytics,
+          mobileUX,
+          schemaValidation,
+          resourceOptimization,
+          legalCompliance,
+          ecommerce,
+          internationalization,
         },
         score,
         summary: {
@@ -170,3 +202,11 @@ export { SpamDetectionChecker } from './checkers/spamDetection';
 export { PageQualityChecker } from './checkers/pageQuality';
 export { AdvancedImagesChecker } from './checkers/advancedImages';
 export { MultimediaChecker } from './checkers/multimedia';
+export { CoreWebVitalsChecker } from './checkers/coreWebVitals';
+export { AnalyticsChecker } from './checkers/analytics';
+export { MobileUXChecker } from './checkers/mobileUX';
+export { SchemaValidationChecker } from './checkers/schemaValidation';
+export { ResourceOptimizationChecker } from './checkers/resourceOptimization';
+export { LegalComplianceChecker } from './checkers/legalCompliance';
+export { EcommerceChecker } from './checkers/ecommerce';
+export { InternationalizationChecker } from './checkers/internationalization';

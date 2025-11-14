@@ -65,7 +65,7 @@ Examples:
   e2e-seo https://example.com --viewport 375x667
   e2e-seo https://example.com --headed
 
-Checks performed (140+ checks across 19 categories):
+Checks performed (260+ checks across 27 categories):
   • Meta tags (title, description, Open Graph, canonical, viewport)
   • Heading structure (H1-H6 hierarchy)
   • Image optimization (alt text)
@@ -85,6 +85,14 @@ Checks performed (140+ checks across 19 categories):
   • Page quality (duplicates, freshness, E-A-T signals)
   • Advanced images (responsive, lazy loading, WebP, dimensions)
   • Multimedia (videos, audio, accessibility, schema)
+  • Core Web Vitals (page load, resources, optimization, caching)
+  • Analytics (Google Analytics, GTM, pixels, tracking, verification)
+  • Mobile UX (tap targets, viewport, responsive, PWA, AMP)
+  • Schema Validation (Product, Article, Organization, Event, etc.)
+  • Resource Optimization (minification, CDN, fonts, HTTP/2)
+  • Legal Compliance (privacy, GDPR, CCPA, cookies, copyright)
+  • E-commerce (products, pricing, reviews, checkout, security)
+  • Internationalization (hreflang, languages, localization, Unicode)
 
 For more information, visit: https://github.com/yourusername/e2e-seo
   `);
@@ -146,6 +154,14 @@ async function main() {
       { name: 'Page Quality', checks: report.checks.pageQuality },
       { name: 'Advanced Images', checks: report.checks.advancedImages },
       { name: 'Multimedia', checks: report.checks.multimedia },
+      { name: 'Core Web Vitals', checks: report.checks.coreWebVitals },
+      { name: 'Analytics & Tracking', checks: report.checks.analytics },
+      { name: 'Mobile UX', checks: report.checks.mobileUX },
+      { name: 'Schema Validation', checks: report.checks.schemaValidation },
+      { name: 'Resource Optimization', checks: report.checks.resourceOptimization },
+      { name: 'Legal & Compliance', checks: report.checks.legalCompliance },
+      { name: 'E-commerce', checks: report.checks.ecommerce },
+      { name: 'Internationalization', checks: report.checks.internationalization },
     ];
 
     sections.forEach((section) => {
