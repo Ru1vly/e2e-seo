@@ -22,6 +22,11 @@ export interface SEOReport {
     uiElements: SEOCheckResult[];
     technical: SEOCheckResult[];
     accessibility: SEOCheckResult[];
+    urlFactors: SEOCheckResult[];
+    spamDetection: SEOCheckResult[];
+    pageQuality: SEOCheckResult[];
+    advancedImages: SEOCheckResult[];
+    multimedia: SEOCheckResult[];
   };
   score: number;
   summary: {

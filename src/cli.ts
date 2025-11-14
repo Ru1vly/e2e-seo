@@ -65,7 +65,7 @@ Examples:
   e2e-seo https://example.com --viewport 375x667
   e2e-seo https://example.com --headed
 
-Checks performed:
+Checks performed (140+ checks across 19 categories):
   • Meta tags (title, description, Open Graph, canonical, viewport)
   • Heading structure (H1-H6 hierarchy)
   • Image optimization (alt text)
@@ -80,6 +80,11 @@ Checks performed:
   • UI elements (favicon, breadcrumbs, language tags)
   • Technical SEO (redirects, response codes, compression, duplicates)
   • Accessibility (ARIA labels, form labels, tab order)
+  • URL factors (length, readability, keywords, structure)
+  • Spam detection (hidden text, keyword stuffing, cloaking)
+  • Page quality (duplicates, freshness, E-A-T signals)
+  • Advanced images (responsive, lazy loading, WebP, dimensions)
+  • Multimedia (videos, audio, accessibility, schema)
 
 For more information, visit: https://github.com/yourusername/e2e-seo
   `);
@@ -136,6 +141,11 @@ async function main() {
       { name: 'UI Elements', checks: report.checks.uiElements },
       { name: 'Technical SEO', checks: report.checks.technical },
       { name: 'Accessibility', checks: report.checks.accessibility },
+      { name: 'URL Factors', checks: report.checks.urlFactors },
+      { name: 'Spam Detection', checks: report.checks.spamDetection },
+      { name: 'Page Quality', checks: report.checks.pageQuality },
+      { name: 'Advanced Images', checks: report.checks.advancedImages },
+      { name: 'Multimedia', checks: report.checks.multimedia },
     ];
 
     sections.forEach((section) => {

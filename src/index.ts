@@ -14,6 +14,11 @@ import { LinksChecker } from './checkers/links';
 import { UIElementsChecker } from './checkers/uiElements';
 import { TechnicalChecker } from './checkers/technical';
 import { AccessibilityChecker } from './checkers/accessibility';
+import { URLFactorsChecker } from './checkers/urlFactors';
+import { SpamDetectionChecker } from './checkers/spamDetection';
+import { PageQualityChecker } from './checkers/pageQuality';
+import { AdvancedImagesChecker } from './checkers/advancedImages';
+import { MultimediaChecker } from './checkers/multimedia';
 
 export class SEOChecker {
   private browser: Browser | null = null;
@@ -44,8 +49,13 @@ export class SEOChecker {
       const uiElementsChecker = new UIElementsChecker(this.page!);
       const technicalChecker = new TechnicalChecker(this.page!);
       const accessibilityChecker = new AccessibilityChecker(this.page!);
+      const urlFactorsChecker = new URLFactorsChecker(this.page!);
+      const spamDetectionChecker = new SpamDetectionChecker(this.page!);
+      const pageQualityChecker = new PageQualityChecker(this.page!);
+      const advancedImagesChecker = new AdvancedImagesChecker(this.page!);
+      const multimediaChecker = new MultimediaChecker(this.page!);
 
-      const [metaTags, headings, images, performance, robotsTxt, sitemap, security, structuredData, socialMedia, content, links, uiElements, technical, accessibility] = await Promise.all([
+      const [metaTags, headings, images, performance, robotsTxt, sitemap, security, structuredData, socialMedia, content, links, uiElements, technical, accessibility, urlFactors, spamDetection, pageQuality, advancedImages, multimedia] = await Promise.all([
         metaTagsChecker.checkAll(),
         headingsChecker.checkAll(),
         imagesChecker.checkAll(),
@@ -60,9 +70,14 @@ export class SEOChecker {
         uiElementsChecker.checkAll(),
         technicalChecker.checkAll(),
         accessibilityChecker.checkAll(),
+        urlFactorsChecker.checkAll(),
+        spamDetectionChecker.checkAll(),
+        pageQualityChecker.checkAll(),
+        advancedImagesChecker.checkAll(),
+        multimediaChecker.checkAll(),
       ]);
 
-      const allChecks = [...metaTags, ...headings, ...images, ...performance, ...robotsTxt, ...sitemap, ...security, ...structuredData, ...socialMedia, ...content, ...links, ...uiElements, ...technical, ...accessibility];
+      const allChecks = [...metaTags, ...headings, ...images, ...performance, ...robotsTxt, ...sitemap, ...security, ...structuredData, ...socialMedia, ...content, ...links, ...uiElements, ...technical, ...accessibility, ...urlFactors, ...spamDetection, ...pageQuality, ...advancedImages, ...multimedia];
       const passed = allChecks.filter((c) => c.passed).length;
       const failed = allChecks.filter((c) => !c.passed).length;
       const score = Math.round((passed / allChecks.length) * 100);
@@ -85,6 +100,11 @@ export class SEOChecker {
           uiElements,
           technical,
           accessibility,
+          urlFactors,
+          spamDetection,
+          pageQuality,
+          advancedImages,
+          multimedia,
         },
         score,
         summary: {
@@ -145,3 +165,8 @@ export { LinksChecker } from './checkers/links';
 export { UIElementsChecker } from './checkers/uiElements';
 export { TechnicalChecker } from './checkers/technical';
 export { AccessibilityChecker } from './checkers/accessibility';
+export { URLFactorsChecker } from './checkers/urlFactors';
+export { SpamDetectionChecker } from './checkers/spamDetection';
+export { PageQualityChecker } from './checkers/pageQuality';
+export { AdvancedImagesChecker } from './checkers/advancedImages';
+export { MultimediaChecker } from './checkers/multimedia';
