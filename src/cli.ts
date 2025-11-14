@@ -65,11 +65,34 @@ Examples:
   e2e-seo https://example.com --viewport 375x667
   e2e-seo https://example.com --headed
 
-Checks performed:
+Checks performed (260+ checks across 27 categories):
   • Meta tags (title, description, Open Graph, canonical, viewport)
   • Heading structure (H1-H6 hierarchy)
   • Image optimization (alt text)
   • Performance metrics (load time, DOM content loaded)
+  • Robots.txt validation
+  • XML sitemap detection
+  • Security (HTTPS, mixed content, security headers)
+  • Structured data (JSON-LD, Microdata)
+  • Social media tags (Twitter Cards, Facebook Open Graph)
+  • Content analysis (word count, readability)
+  • Links analysis (internal/external links)
+  • UI elements (favicon, breadcrumbs, language tags)
+  • Technical SEO (redirects, response codes, compression, duplicates)
+  • Accessibility (ARIA labels, form labels, tab order)
+  • URL factors (length, readability, keywords, structure)
+  • Spam detection (hidden text, keyword stuffing, cloaking)
+  • Page quality (duplicates, freshness, E-A-T signals)
+  • Advanced images (responsive, lazy loading, WebP, dimensions)
+  • Multimedia (videos, audio, accessibility, schema)
+  • Core Web Vitals (page load, resources, optimization, caching)
+  • Analytics (Google Analytics, GTM, pixels, tracking, verification)
+  • Mobile UX (tap targets, viewport, responsive, PWA, AMP)
+  • Schema Validation (Product, Article, Organization, Event, etc.)
+  • Resource Optimization (minification, CDN, fonts, HTTP/2)
+  • Legal Compliance (privacy, GDPR, CCPA, cookies, copyright)
+  • E-commerce (products, pricing, reviews, checkout, security)
+  • Internationalization (hreflang, languages, localization, Unicode)
 
 For more information, visit: https://github.com/yourusername/e2e-seo
   `);
@@ -94,7 +117,7 @@ async function main() {
   }
 
   const checker = new SEOChecker({
-    url: args.url,
+    url: args.url!,
     headless: args.headless !== false,
     viewport,
   });
@@ -116,6 +139,29 @@ async function main() {
       { name: 'Headings', checks: report.checks.headings },
       { name: 'Images', checks: report.checks.images },
       { name: 'Performance', checks: report.checks.performance },
+      { name: 'Robots.txt', checks: report.checks.robotsTxt },
+      { name: 'Sitemap', checks: report.checks.sitemap },
+      { name: 'Security', checks: report.checks.security },
+      { name: 'Structured Data', checks: report.checks.structuredData },
+      { name: 'Social Media', checks: report.checks.socialMedia },
+      { name: 'Content', checks: report.checks.content },
+      { name: 'Links', checks: report.checks.links },
+      { name: 'UI Elements', checks: report.checks.uiElements },
+      { name: 'Technical SEO', checks: report.checks.technical },
+      { name: 'Accessibility', checks: report.checks.accessibility },
+      { name: 'URL Factors', checks: report.checks.urlFactors },
+      { name: 'Spam Detection', checks: report.checks.spamDetection },
+      { name: 'Page Quality', checks: report.checks.pageQuality },
+      { name: 'Advanced Images', checks: report.checks.advancedImages },
+      { name: 'Multimedia', checks: report.checks.multimedia },
+      { name: 'Core Web Vitals', checks: report.checks.coreWebVitals },
+      { name: 'Analytics & Tracking', checks: report.checks.analytics },
+      { name: 'Mobile UX', checks: report.checks.mobileUX },
+      { name: 'Schema Validation', checks: report.checks.schemaValidation },
+      { name: 'Resource Optimization', checks: report.checks.resourceOptimization },
+      { name: 'Legal & Compliance', checks: report.checks.legalCompliance },
+      { name: 'E-commerce', checks: report.checks.ecommerce },
+      { name: 'Internationalization', checks: report.checks.internationalization },
     ];
 
     sections.forEach((section) => {
