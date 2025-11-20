@@ -77,7 +77,7 @@ export async function withGracefulDegradation<T extends SEOCheckResult>(
       message,
       category: categorized.context.category,
       severity: categorized.context.severity,
-    } as T;
+    } as unknown as T;
   }
 }
 
@@ -205,7 +205,7 @@ export async function withPartialSuccess<T>(
 /**
  * Timeout wrapper with graceful degradation
  */
-export async function withTimeout<T>(
+export async function withTimeout<T extends SEOCheckResult>(
   fn: () => Promise<T>,
   timeoutMs: number,
   checkName: string,

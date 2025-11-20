@@ -12,6 +12,7 @@ interface CliArgs {
   preset?: string;
   help?: boolean;
   initConfig?: boolean;
+  json?: boolean;
 }
 
 function parseArgs(): CliArgs {
@@ -50,6 +51,9 @@ function parseArgs(): CliArgs {
       case '--init-config':
         args.initConfig = true;
         break;
+      case '--json':
+        args.json = true;
+        break;
       default:
         if (!arg.startsWith('-') && !args.url) {
           args.url = arg;
@@ -69,6 +73,7 @@ Usage: e2e-seo [options] <url>
 Options:
   -u, --url <url>        URL to check (required)
   -o, --output <file>    Output JSON report to file
+  --json                 Output JSON to stdout (no formatted text)
   -c, --config <file>    Configuration file (JSON or YAML)
   -p, --preset <name>    Use preset configuration (basic, advanced, strict)
   --init-config          Create a default configuration file
@@ -138,7 +143,9 @@ async function main() {
     process.exit(args.help ? 0 : 1);
   }
 
-  console.log('🔍 Running SEO check...\n');
+  if (!args.json) {
+    console.log('🔍 Running SEO check...\n');
+  }
 
   let viewport = { width: 1920, height: 1080 };
   if (args.viewport) {
@@ -164,6 +171,12 @@ async function main() {
 
   try {
     const report = await checker.check();
+
+    // If JSON output is requested, just print JSON and exit
+    if (args.json) {
+      console.log(JSON.stringify(report, null, 2));
+      process.exit(0);
+    }
 
     console.log(`📊 SEO Report for ${report.url}\n`);
     console.log(`Score: ${report.score}/100`);

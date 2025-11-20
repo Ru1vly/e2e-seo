@@ -23,7 +23,10 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\"",
     "example": "npm run build && node examples/basic-usage.js",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "desktop:dev": "npm run build && npx tauri dev",
+    "desktop:build": "npm run build && npx tauri build",
+    "desktop:deps": "cd desktop-app && npm install"
   },
   "keywords": [
     "seo",
@@ -44,6 +47,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1",
+    "@tauri-apps/cli": "^2.9.4",
     "@types/express": "^5.0.5",
     "@types/jest": "^30.0.0",
     "@types/js-yaml": "^4.0.9",
