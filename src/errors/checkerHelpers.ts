@@ -2,7 +2,7 @@
  * Helper utilities for checkers to handle errors consistently
  */
 
-import { Page } from 'playwright';
+import { Page, APIResponse } from 'playwright';
 import { SEOCheckResult } from '../types/index.js';
 import { retry, RetryOptions } from './retry.js';
 import { ErrorLogger } from './logger.js';
@@ -129,7 +129,7 @@ export class CheckerErrorHandler {
     url: string,
     checkName: string,
     options: RetryOptions = {}
-  ): Promise<Response> {
+  ): Promise<APIResponse> {
     return this.executeNetworkRequest(
       async () => {
         const response = await this.page.context().request.get(url);
