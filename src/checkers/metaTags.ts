@@ -18,37 +18,47 @@ export class MetaTagsChecker {
   }
 
   private async checkTitle(): Promise<SEOCheckResult> {
-    const title = await this.page.title();
-    const titleLength = title.length;
+    try {
+      // Wait for page to be ready
+      await this.page.waitForLoadState('domcontentloaded', { timeout: 5000 }).catch(() => {});
 
-    if (!title || titleLength === 0) {
-      return {
-        passed: false,
-        message: 'Page title is missing',
-      };
-    }
+      const title = await this.page.title();
+      const titleLength = title.length;
 
-    if (titleLength < 30) {
+      if (!title || titleLength === 0) {
+        return {
+          passed: false,
+          message: 'Page title is missing',
+        };
+      }
+
+      if (titleLength < 30) {
+        return {
+          passed: false,
+          message: `Title is too short (${titleLength} characters). Recommended: 30-60 characters`,
+          details: { title, length: titleLength },
+        };
+      }
+
+      if (titleLength > 60) {
+        return {
+          passed: false,
+          message: `Title is too long (${titleLength} characters). Recommended: 30-60 characters`,
+          details: { title, length: titleLength },
+        };
+      }
+
       return {
-        passed: false,
-        message: `Title is too short (${titleLength} characters). Recommended: 30-60 characters`,
+        passed: true,
+        message: `Title is optimal (${titleLength} characters)`,
         details: { title, length: titleLength },
       };
-    }
-
-    if (titleLength > 60) {
+    } catch (error) {
       return {
         passed: false,
-        message: `Title is too long (${titleLength} characters). Recommended: 30-60 characters`,
-        details: { title, length: titleLength },
+        message: `Failed to check title: ${(error as Error).message}`,
       };
     }
-
-    return {
-      passed: true,
-      message: `Title is optimal (${titleLength} characters)`,
-      details: { title, length: titleLength },
-    };
   }
 
   private async checkMetaDescription(): Promise<SEOCheckResult> {

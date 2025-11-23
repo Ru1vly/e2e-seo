@@ -128,9 +128,14 @@ export class SEOChecker {
       throw new Error('Page is not initialized');
     }
 
+    // Navigate and wait for the page to be fully loaded
     await this.page.goto(this.options.url, {
-      waitUntil: 'domcontentloaded',
+      waitUntil: 'networkidle',
+      timeout: this.options.timeout,
     });
+
+    // Additional stability wait
+    await this.page.waitForTimeout(1000);
   }
 
   /**

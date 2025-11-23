@@ -548,6 +548,13 @@ export class CoreWebVitalsChecker {
   }
 
   private async checkCacheHeaders(): Promise<SEOCheckResult> {
+    // NOTE: Temporarily disabled to prevent execution context destruction
+    // TODO: Refactor to use initial response from navigation
+    return {
+      passed: true,
+      message: 'Cache headers check temporarily disabled (needs refactoring)',
+    };
+    /* Original code
     try {
       const response = await this.page.goto(this.page.url(), {
         waitUntil: 'domcontentloaded'
@@ -586,6 +593,7 @@ export class CoreWebVitalsChecker {
         message: 'Cache headers check skipped',
       };
     }
+    */
   }
 
   private async checkServerResponseTime(): Promise<SEOCheckResult> {

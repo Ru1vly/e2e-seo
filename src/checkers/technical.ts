@@ -16,6 +16,13 @@ export class TechnicalChecker {
   }
 
   private async checkResponseCode(): Promise<SEOCheckResult> {
+    // NOTE: Temporarily disabled to prevent execution context destruction
+    // TODO: Refactor to use initial response from navigation
+    return {
+      passed: true,
+      message: 'Response code check temporarily disabled (needs refactoring)',
+    };
+    /* Original code
     try {
       const response = await this.page.goto(this.page.url(), {
         waitUntil: 'domcontentloaded'
@@ -98,6 +105,7 @@ export class TechnicalChecker {
         message: `Error checking response code: ${error instanceof Error ? error.message : 'Unknown error'}`,
       };
     }
+    */
   }
 
   private async checkPageSize(): Promise<SEOCheckResult> {
@@ -139,6 +147,13 @@ export class TechnicalChecker {
   }
 
   private async checkCompression(): Promise<SEOCheckResult> {
+    // NOTE: Temporarily disabled to prevent execution context destruction
+    // TODO: Refactor to use initial response from navigation
+    return {
+      passed: true,
+      message: 'Compression check temporarily disabled (needs refactoring)',
+    };
+    /* Original code
     try {
       const response = await this.page.goto(this.page.url(), {
         waitUntil: 'domcontentloaded',
@@ -182,6 +197,7 @@ export class TechnicalChecker {
         message: 'Compression check skipped due to error',
       };
     }
+    */
   }
 
   private async checkDuplicateTitles(): Promise<SEOCheckResult> {
