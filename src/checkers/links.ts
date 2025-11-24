@@ -2,7 +2,7 @@ import { Page } from 'playwright';
 import { SEOCheckResult } from '../types';
 
 export class LinksChecker {
-  constructor(private page: Page) {}
+  constructor(private page: Page) { }
 
   async checkAll(): Promise<SEOCheckResult[]> {
     const results: SEOCheckResult[] = [];
@@ -47,7 +47,7 @@ export class LinksChecker {
               nofollow.push(href);
             }
 
-            if (!text && !link.querySelector('img')) {
+            if (!text && !link.querySelector('img') && !link.querySelector('svg') && !link.getAttribute('aria-label')) {
               withoutText.push(href);
             }
           } catch {

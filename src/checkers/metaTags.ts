@@ -2,7 +2,7 @@ import { Page } from 'playwright';
 import { SEOCheckResult, MetaTag } from '../types';
 
 export class MetaTagsChecker {
-  constructor(private page: Page) {}
+  constructor(private page: Page) { }
 
   async checkAll(): Promise<SEOCheckResult[]> {
     const results: SEOCheckResult[] = [];
@@ -20,7 +20,7 @@ export class MetaTagsChecker {
   private async checkTitle(): Promise<SEOCheckResult> {
     try {
       // Wait for page to be ready
-      await this.page.waitForLoadState('domcontentloaded', { timeout: 5000 }).catch(() => {});
+      await this.page.waitForLoadState('domcontentloaded', { timeout: 5000 }).catch(() => { });
 
       const title = await this.page.title();
       const titleLength = title.length;

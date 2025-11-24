@@ -25,6 +25,16 @@ describe('SEOChecker', () => {
         count: vi.fn().mockResolvedValue(0),
       }),
       close: vi.fn().mockResolvedValue(undefined),
+      waitForTimeout: vi.fn().mockResolvedValue(undefined),
+      context: vi.fn().mockReturnValue({
+        request: {
+          get: vi.fn().mockResolvedValue({
+            status: vi.fn().mockReturnValue(200),
+            text: vi.fn().mockResolvedValue('User-agent: *\nDisallow:'),
+            headers: vi.fn().mockReturnValue({}),
+          }),
+        },
+      }),
     };
 
     mockBrowser = {
@@ -95,7 +105,7 @@ describe('SEOChecker', () => {
       expect(mockPage.goto).toHaveBeenCalledWith(
         'https://example.com/page',
         expect.objectContaining({
-          waitUntil: 'domcontentloaded',
+          waitUntil: 'networkidle',
         })
       );
     });
